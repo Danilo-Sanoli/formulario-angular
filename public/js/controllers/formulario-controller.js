@@ -9,7 +9,7 @@ angular.module('daniloTeste').controller('FormularioController', function($scope
 	    	var taxa = JSON.stringify({cpf: data.cpf, limiteCredito: $scope.credito, tipoRisco: $scope.defineTaxa($scope.risco)});
 	    	$http.post("http://localhost:8081/taxas/salvar", taxa).
 			success(function(data, status) {
-				  
+				alert('Informações salvas com sucesso');	  
 			});
 	    });
 	}
