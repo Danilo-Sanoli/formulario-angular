@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="daniloTeste">
+	<head>
+		<base href="/">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Teste</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/efeitos.css">
+		<script src="js/lib/angular.min.js"></script>
+		<script src="js/lib/angular-animate.min.js"></script>
+		<script src="js/lib/angular-route.min.js"></script>
+		<script src="js/lib/angular-resource.min.js"></script>
+		<script src="js/lib/jquery.min.js"></script>
+		<script src="js/lib/bootstrap-table.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/controllers/formulario-controller.js"></script>
+	</head>
+	<body>
+		<div class="container" ng-controller="FormularioController">
+
+			<div class="jumbotron">
+				<h1 class="text-center">Teste</h1>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<form name="validarValoresPreenchidos">
+						<div class="form-group">
+							<label for="cpf">CPF</label>
+							<input class="form-control" id="cpf" placeholder="CPF" ng-model="cpf" ng-model-options="{ debounce: 500 }" required ng-blur="buscaPessoa()">
+						</div>
+						<div class="form-group">
+							<label for="nome">Nome Completo</label>
+							<input class="form-control" id="nome" placeholder="Nome Completo" ng-model="nomeCompleto" ng-model-options="{ debounce: 500 }" required>
+						</div>
+						<div class="form-group">
+							<label for="credito">Crédito</label>
+							<input class="form-control" id="credito" placeholder="Limite de Crédito" ng-model="credito" ng-model-options="{ debounce: 500 }" required ng-blur="calcularTaxa()">
+						</div>
+						<div class="form-group">
+							<label for="risco">Tipo de Risco</label>
+							<select id="risco "class="form-control"ng-model="risco" ng-model-options="{ debounce: 500 }" required ng-change="calcularTaxa()">
+								<option value="{{x.valor}}" ng-repeat="x in riscos">{{x.tipo}}</option>
+							</select>
+						</div>
+						<br />
+						<button class="btn btn-success" ng-disabled="validarValoresPreenchidos.$invalid" ng-click="salvarPessoa()">
+							<i class="icon-ok icon-white"></i> Salvar
+				      	</button>
+					</form>
+					<div class="container">
+				        <table id="table" class="table table-hover">
+					        <thead>
+					            <tr>
+					                <th data-field="cpf">CPF</th>
+					                <th data-field="limiteCredito">Limite de Crédito</th>
+					                <th data-field="tipoRisco">Tipo de Risco</th>
+					            </tr>
+					        </thead>
+					    </table>
+				    </div>
+				</div> 
+			</div> 
+
+		</div>
+	</body>
+</html>
